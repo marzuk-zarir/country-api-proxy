@@ -1,0 +1,22 @@
+extends layout.pug
+include ./mixins/list.pug
+include ./mixins/notfound.pug
+
+block body
+    div(class="container")
+        h1(class="h3 text-center text-secondary mt-5 mb-4") Country Search Proxy Api
+        form(action="/" method="POST" class="mx-auto" style="max-width: 700px")
+            div(class="input-group")
+                input(
+                    type="text"
+                    name="countryName"
+                    class="form-control"
+                    placeholder="Search with your country name"
+                )
+                input(type="hidden" name="_csrf" value=csrfToken)
+                input(type="submit" class="btn btn-primary" value="Search")
+
+            if country
+                +list(country)
+            else
+                +notfound

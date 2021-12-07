@@ -1,0 +1,20 @@
+mixin list({ name, flags, maps, subregion, languages, capital, currencies, population, latlng })
+    div(class="d-flex flex-wrap my-5 p-3 rounded-3 bg-light")
+        div(class="d-flex flex-column text-center")
+            img(src=flags.svg alt=name.name class="img-fluid" style="width: 180px")
+            a(href=maps.googleMaps target="__blank" class="mt-3 text-decoration-none") View map
+
+        div(class="ps-4")
+            h4 Name: #{ name.official }
+            each nativeLang in name.nativeName
+                p(class="lead") Native: #{ nativeLang.official }
+            p(class="lead") Region: #{ subregion }
+            p(class="lead") Capital: #{ capital[0] }
+            p(class="lead") Languages:
+                each lang in languages
+                    span  #{ lang }
+            p(class="lead") Currency:
+                each curr in currencies
+                    span  #{ curr.name }(#{ curr.symbol })
+            p(class="lead") Population: #{ population }
+            p(class="lead") Latlong: #{ latlng[0] }, #{ latlng[1] }
